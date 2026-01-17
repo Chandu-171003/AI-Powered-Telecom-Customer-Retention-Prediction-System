@@ -1,0 +1,2 @@
+# AI-Powered-Telecom-Customer-Retention-Prediction-System
+End-to-end telecom churn prediction system using EDA, feature engineering, imputation, outlier handling, feature selection, SMOTE, and ML models. Includes ROC-AUC evaluation, logging, and Flask app deployment for real-time customer churn prediction with scalable pipeline, model comparison, and business-ready insights for telecom use. Production.!
