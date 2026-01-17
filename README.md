@@ -21,30 +21,59 @@ and support customer retention strategies.
 <h2>📈 Exploratory Data Analysis & Model Visualizations</h2>
 
 <p>
-The project includes comprehensive visual analysis to understand customer behavior,
-churn drivers, and model performance.
+Exploratory Data Analysis (EDA) was performed to understand customer behavior,
+identify churn patterns, and discover key business drivers influencing customer retention.
 </p>
 
 <h3>EDA Visual Insights</h3>
+
 <ul>
-  <li>Customer churn distribution</li>
-  <li>Tenure and contract-based churn patterns</li>
-  <li>Payment methods and billing behavior</li>
-  <li>Service usage, add-ons, and bundling impact</li>
-  <li>Demographic, SIM-wise, and senior citizen analysis</li>
+  <li>
+    <strong>Customer Churn Distribution:</strong>
+    Shows the proportion of customers who churned versus those retained, highlighting
+    the presence of class imbalance and the overall churn problem.
+  </li>
+
+  <li>
+    <strong>Tenure & Contract-Based Analysis:</strong>
+    Visualizes how churn is higher during early customer tenure and among month-to-month
+    contract users, indicating the importance of early-stage retention strategies.
+  </li>
+
+  <li>
+    <strong>Payment Methods & Billing Behavior:</strong>
+    Demonstrates that customers using manual payment methods and non-paperless billing
+    exhibit higher churn compared to customers using automatic payment options.
+  </li>
+
+  <li>
+    <strong>Service Usage & Add-on Analysis:</strong>
+    Shows that customers subscribing to multiple services such as streaming, security,
+    and technical support tend to remain longer, proving the value of service bundling.
+  </li>
+
+  <li>
+    <strong>Demographic & SIM-wise Analysis:</strong>
+    Analyzes churn patterns across gender, senior citizens, dependents, and SIM providers,
+    revealing that family-oriented customers are generally more stable.
+  </li>
 </ul>
 
 <p>
-All EDA plots are available in <strong>CRPS-Documentation.pdf</strong>.
+All EDA visualizations and insights are documented in <strong>CRPS-Documentation.pdf</strong>.
 </p>
 
 <hr>
 
-<h3>📊 Model Performance & ROC Analysis</h3>
+<!-- ================= AUC ROC ================= -->
+
+<h3>📊 Model Performance & AUC–ROC Analysis</h3>
 
 <p>
-Multiple machine learning models were evaluated using Test Accuracy and AUC scores.
-ROC curves were generated to visually compare model discrimination ability.
+Multiple machine learning models were trained and evaluated using Test Accuracy and
+AUC (Area Under the ROC Curve). AUC–ROC is preferred for churn prediction because it
+measures a model’s ability to distinguish between churn and non-churn customers,
+even when the dataset is imbalanced.
 </p>
 
 <table border="1" cellpadding="8" cellspacing="0">
@@ -66,7 +95,61 @@ ROC curves were generated to visually compare model discrimination ability.
 
 <p>
 ROC curves for all models are available in <strong>AUC_ROC_Curve.pdf</strong>.
-Naive Bayes, Gradient Boosting, and XGBoost demonstrated strong AUC performance.
+Models with higher AUC values demonstrate better separation between churned and
+retained customers.
+</p>
+
+<hr>
+<h3>Architecture Flow Explanation</h3>
+<ol>
+  <li>
+    <strong>Data Source:</strong> Telecom customer data containing demographics,
+    services, billing, tenure, and churn information.
+  </li>
+  <li>
+    <strong>Data Preprocessing:</strong> Missing value imputation, outlier treatment,
+    variable transformation, and feature selection to clean and optimize the dataset.
+  </li>
+  <li>
+    <strong>Feature Engineering:</strong> Categorical encoding, numerical scaling,
+    and feature reduction to prepare data for modeling.
+  </li>
+  <li>
+    <strong>Class Imbalance Handling:</strong> SMOTE is applied to balance churn
+    and non-churn classes.
+  </li>
+  <li>
+    <strong>Model Training & Evaluation:</strong> Multiple ML models are trained
+    and evaluated using Accuracy and AUC–ROC metrics.
+  </li>
+  <li>
+    <strong>Best Model Selection:</strong> Naive Bayes is selected based on highest
+    AUC score and stable performance.
+  </li>
+  <li>
+    <strong>Model Serialization:</strong> The trained model and scaler are saved
+    for deployment.
+  </li>
+  <li>
+    <strong>Flask Deployment:</strong> A web application accepts user input and
+    returns real-time churn predictions.
+  </li>
+</ol>
+
+<!-- ================= BEST MODEL ================= -->
+
+<h3>🏆 Best Model Selection</h3>
+
+<p>
+<strong>Naive Bayes</strong> was selected as the final model because it achieved the
+<strong>highest AUC score (0.8366)</strong> along with strong test accuracy.
+This indicates superior performance in identifying churn-prone customers.
+</p>
+
+<p>
+Additionally, Naive Bayes is computationally efficient, robust to noise, and performs
+well with scaled and transformed features, making it suitable for real-time deployment.
+The trained Naive Bayes model was saved and used in the Flask application.
 </p>
 
 <hr>
@@ -82,8 +165,8 @@ Naive Bayes, Gradient Boosting, and XGBoost demonstrated strong AUC performance.
   <li>Categorical encoding</li>
   <li>Class imbalance handling using SMOTE</li>
   <li>Model training and evaluation</li>
-  <li>ROC–AUC comparison</li>
-  <li>Model serialization</li>
+  <li>AUC–ROC comparison</li>
+  <li>Best model selection</li>
   <li>Flask-based deployment</li>
 </ol>
 
@@ -135,23 +218,13 @@ Flask web application for real-time customer churn prediction.
 Centralized logging utility used across all modules for debugging and monitoring.
 </p>
 
-<h3>CRPS-Documentation.pdf</h3>
-<p>
-Contains all EDA visualizations and business insights.
-</p>
-
-<h3>AUC_ROC_Curve.pdf</h3>
-<p>
-Includes ROC curves and AUC scores for all trained models.
-</p>
-
 <hr>
 
 <h2>🎯 Key Results</h2>
 <ul>
   <li>High churn observed in early tenure and month-to-month contracts</li>
   <li>Bundled services and long-term contracts improve retention</li>
-  <li>Ensemble models achieved strong ROC-AUC scores</li>
+  <li>Naive Bayes achieved the best AUC performance</li>
   <li>End-to-end pipeline supports real-time churn prediction</li>
 </ul>
 
