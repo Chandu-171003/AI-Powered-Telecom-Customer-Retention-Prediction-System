@@ -240,9 +240,5 @@ Centralized logging utility used across all modules for debugging and monitoring
 </ul>
 
 <hr>
-
-<p><strong>Author:</strong> Chandra Kanth</p>
-<p><strong>Domain:</strong> Machine Learning | Data Science | Telecom Analytics</p>
-
 </body>
 </html>
