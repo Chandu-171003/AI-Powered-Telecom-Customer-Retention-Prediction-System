@@ -1,244 +1,364 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Customer Churn Prediction System</title>
-</head>
-<body>
+<h1 align="center">AI Powered Telecom Customer Retention Prediction System</h1>
 
-<h1>📊 Customer Churn Prediction System</h1>
-
-<p>
-An end-to-end telecom churn prediction system combining exploratory data analysis,
-feature engineering, machine learning, and Flask deployment to predict customer churn
-and support customer retention strategies.
+<p align="center">
+<b>Major Project Report | Data Science & Machine Learning | Telecom Analytics</b>
 </p>
 
-<hr>
+<hr/>
 
-<!-- ================= VISUALIZATIONS ================= -->
-
-<h2>📈 Exploratory Data Analysis & Model Visualizations</h2>
-
+<h2>📌 Project Overview</h2>
 <p>
-Exploratory Data Analysis (EDA) was performed to understand customer behavior,
-identify churn patterns, and discover key business drivers influencing customer retention.
+Customer churn prediction is a critical analytical problem in the telecom industry, where
+organizations aim to identify customers who are likely to discontinue services.
+This project implements an end-to-end machine learning pipeline to analyze customer
+behavior, predict churn probability, and support proactive retention strategies.
 </p>
 
-<h3>EDA Visual Insights</h3>
+<p>
+The system integrates data preprocessing, exploratory analysis, feature engineering,
+statistical feature selection, machine learning model training, evaluation, and deployment
+using a Flask-based web application.
+</p>
 
+<hr/>
+
+<h2>🏗 System Architecture</h2>
+<p>
+The overall system architecture follows a structured machine learning workflow to ensure
+data quality, reliable predictions, and real-world deployment readiness.
+</p>
+
+<ol>
+  <li>Data Cleaning & Preprocessing</li>
+  <li>Exploratory Data Analysis (EDA)</li>
+  <li>Feature Engineering</li>
+  <li>Feature Selection</li>
+  <li>Train–Validation–Test Split</li>
+  <li>Model Training (Multiple ML Models)</li>
+  <li>Model Evaluation & Comparison</li>
+  <li>Hyperparameter Tuning</li>
+  <li>Final Model Selection</li>
+  <li>Model Serialization (Pickle / Joblib)</li>
+  <li>API Development (Flask)</li>
+  <li>Deployment & Monitoring</li>
+</ol>
+
+<hr/>
+
+<h2>📝 Abstract</h2>
+<p>
+This project focuses on predicting telecom customer churn by analyzing demographic,
+service usage, and billing-related attributes. Comprehensive preprocessing techniques
+including missing value handling, encoding, scaling, and class imbalance treatment were
+applied to ensure high-quality inputs.
+</p>
+
+<p>
+Exploratory Data Analysis (EDA) revealed key churn drivers such as contract type, tenure,
+payment method, and service add-ons. Multiple machine learning models were trained and
+evaluated using accuracy, precision, recall, F1-score, and ROC–AUC metrics.
+</p>
+
+<p>
+The final deployed system enables organizations to identify high-risk customers in advance
+and implement targeted retention strategies.
+</p>
+
+<hr/>
+
+<h2>📘 Introduction</h2>
+<p>
+Customer churn prediction is a supervised machine learning problem where the target
+variable indicates whether a customer will leave the service. The dataset contains both
+numerical and categorical features representing customer demographics, subscriptions,
+usage behavior, and billing information.
+</p>
+
+<p>
+Since machine learning algorithms operate on numerical data, extensive preprocessing
+steps such as encoding, scaling, and missing value treatment were applied. Class imbalance
+was addressed to ensure robust model learning.
+</p>
+
+<p>
+Multiple models including Logistic Regression, Random Forest, XGBoost, and Naive Bayes
+were evaluated using ROC–AUC as the primary selection metric.
+</p>
+
+<hr/>
+
+<h2>🧰 Requirements for Model Development</h2>
 <ul>
-  <li>
-    <strong>Customer Churn Distribution:</strong>
-    Shows the proportion of customers who churned versus those retained, highlighting
-    the presence of class imbalance and the overall churn problem.
-  </li>
+  <li>Flask – Web framework for backend development</li>
+  <li>Gunicorn – Production WSGI server</li>
+  <li>NumPy – Numerical computation</li>
+  <li>Pandas – Data manipulation</li>
+  <li>Matplotlib – Visualization</li>
+  <li>Seaborn – Statistical visualization</li>
+  <li>Scikit-learn – ML algorithms and preprocessing</li>
+  <li>Imbalanced-learn – SMOTE for class balancing</li>
+  <li>Statsmodels – Statistical testing</li>
+  <li>Feature-engine – Feature transformations</li>
+  <li>Joblib / Pickle – Model serialization</li>
+</ul>
 
-  <li>
-    <strong>Tenure & Contract-Based Analysis:</strong>
-    Visualizes how churn is higher during early customer tenure and among month-to-month
-    contract users, indicating the importance of early-stage retention strategies.
-  </li>
+<hr/>
 
-  <li>
-    <strong>Payment Methods & Billing Behavior:</strong>
-    Demonstrates that customers using manual payment methods and non-paperless billing
-    exhibit higher churn compared to customers using automatic payment options.
-  </li>
+<h2>📊 Data Visualization (EDA)</h2>
 
-  <li>
-    <strong>Service Usage & Add-on Analysis:</strong>
-    Shows that customers subscribing to multiple services such as streaming, security,
-    and technical support tend to remain longer, proving the value of service bundling.
-  </li>
+<h3>Visualization Overview</h3>
+<p>
+Matplotlib and Seaborn libraries were used to visualize customer behavior and churn
+patterns. Bar charts, pie charts, count plots, box plots, and histograms were employed.
+</p>
 
-  <li>
-    <strong>Demographic & SIM-wise Analysis:</strong>
-    Analyzes churn patterns across gender, senior citizens, dependents, and SIM providers,
-    revealing that family-oriented customers are generally more stable.
-  </li>
+<h3>Customer Churn Distribution</h3>
+<p>
+A bar chart comparing churned vs retained customers shows that although most customers
+are retained, even a small churn percentage can lead to significant revenue loss.
+</p>
+
+<h3>Gender-wise Churn Analysis</h3>
+<p>
+Male and female churn distributions indicate similar retention patterns, showing that
+gender alone is not a strong churn predictor.
+</p>
+
+<h3>Payment Method Distribution</h3>
+<p>
+Electronic check users form the largest group and are often associated with higher churn,
+while automatic payment users exhibit better retention.
+</p>
+
+<h3>Contract Type Analysis</h3>
+<p>
+Month-to-month contracts dominate the dataset and show higher churn. Long-term contracts
+strongly improve customer retention.
+</p>
+
+<h3>Paperless Billing</h3>
+<p>
+Most customers prefer paperless billing. Digitally engaged customers tend to stay longer.
+</p>
+
+<h3>Streaming & Add-on Services</h3>
+<p>
+Customers with multiple add-on services such as streaming, security, and tech support
+show lower churn due to higher engagement.
+</p>
+
+<h3>Internet Service & Multiple Lines</h3>
+<p>
+Fiber optic users generally show lower churn. Customers with multiple lines are more
+invested and less likely to churn.
+</p>
+
+<h3>Partner, Dependents & Senior Citizens</h3>
+<p>
+Customers with partners and dependents churn less. Senior citizens form a smaller group
+but require targeted plans.
+</p>
+
+<h3>Final EDA Observations</h3>
+<p>
+Tenure, contract type, payment method, and billing type are the most influential churn
+drivers. Early-stage customers show the highest churn risk.
+</p>
+
+<hr/>
+
+<h2>🛠 Feature Engineering</h2>
+
+<h3>Handling Missing Values</h3>
+<p>
+Several imputation techniques were evaluated:
+</p>
+<ul>
+  <li>Random Sample Imputation – Preserves distribution but increased variance</li>
+  <li>Mean / Median / Mode Imputation – Alters standard deviation</li>
+  <li>Dropping Missing Data – Risk of data loss</li>
+  <li>Constant / Arbitrary / End of Distribution – Introduces artificial bias</li>
 </ul>
 
 <p>
-All EDA visualizations and insights are documented in <strong>CRPS-Documentation.pdf</strong>.
+Based on evaluation, the most suitable approach was selected to maintain data stability.
 </p>
 
-<hr>
-
-<!-- ================= AUC ROC ================= -->
-
-<h3>📊 Model Performance & AUC–ROC Analysis</h3>
-
+<h3>Data Separation</h3>
 <p>
-Multiple machine learning models were trained and evaluated using Test Accuracy and
-AUC (Area Under the ROC Curve). AUC–ROC is preferred for churn prediction because it
-measures a model’s ability to distinguish between churn and non-churn customers,
-even when the dataset is imbalanced.
+Features were separated into numerical and categorical variables to apply appropriate
+preprocessing techniques.
 </p>
 
-<table border="1" cellpadding="8" cellspacing="0">
-  <tr>
-    <th>Algorithm</th>
-    <th>Test Accuracy</th>
-    <th>AUC Score</th>
-  </tr>
-  <tr><td>KNN</td><td>0.7232</td><td>0.7248</td></tr>
-  <tr><td>Naive Bayes</td><td>0.7935</td><td>0.8366</td></tr>
-  <tr><td>Logistic Regression</td><td>0.7260</td><td>0.8103</td></tr>
-  <tr><td>Decision Tree</td><td>0.6962</td><td>0.6425</td></tr>
-  <tr><td>Random Forest</td><td>0.7480</td><td>0.6519</td></tr>
-  <tr><td>AdaBoost</td><td>0.7821</td><td>0.8094</td></tr>
-  <tr><td>Gradient Boosting</td><td>0.7296</td><td>0.8302</td></tr>
-  <tr><td>XGBoost</td><td>0.7594</td><td>0.8276</td></tr>
-  <tr><td>SVM</td><td>0.7353</td><td>0.7320</td></tr>
-</table>
+<h3>Variable Transformation</h3>
 
+<h4>Power Transformation</h4>
 <p>
-ROC curves for all models are available in <strong>AUC_ROC_Curve.pdf</strong>.
-Models with higher AUC values demonstrate better separation between churned and
-retained customers.
+Applied to reduce skewness but failed to achieve normality.
 </p>
 
-<hr>
-<h3>Architecture Flow Explanation</h3>
-<ol>
-  <li>
-    <strong>Data Source:</strong> Telecom customer data containing demographics,
-    services, billing, tenure, and churn information.
-  </li>
-  <li>
-    <strong>Data Preprocessing:</strong> Missing value imputation, outlier treatment,
-    variable transformation, and feature selection to clean and optimize the dataset.
-  </li>
-  <li>
-    <strong>Feature Engineering:</strong> Categorical encoding, numerical scaling,
-    and feature reduction to prepare data for modeling.
-  </li>
-  <li>
-    <strong>Class Imbalance Handling:</strong> SMOTE is applied to balance churn
-    and non-churn classes.
-  </li>
-  <li>
-    <strong>Model Training & Evaluation:</strong> Multiple ML models are trained
-    and evaluated using Accuracy and AUC–ROC metrics.
-  </li>
-  <li>
-    <strong>Best Model Selection:</strong> Naive Bayes is selected based on highest
-    AUC score and stable performance.
-  </li>
-  <li>
-    <strong>Model Serialization:</strong> The trained model and scaler are saved
-    for deployment.
-  </li>
-  <li>
-    <strong>Flask Deployment:</strong> A web application accepts user input and
-    returns real-time churn predictions.
-  </li>
-</ol>
-
-<!-- ================= BEST MODEL ================= -->
-
-<h3>🏆 Best Model Selection</h3>
-
+<h4>Arcsin Transformation</h4>
 <p>
-<strong>Naive Bayes</strong> was selected as the final model because it achieved the
-<strong>highest AUC score (0.8366)</strong> along with strong test accuracy.
-This indicates superior performance in identifying churn-prone customers.
+Applicable only to proportional data; not suitable for this dataset.
 </p>
 
+<h4>Log Transformation</h4>
 <p>
-Additionally, Naive Bayes is computationally efficient, robust to noise, and performs
-well with scaled and transformed features, making it suitable for real-time deployment.
-The trained Naive Bayes model was saved and used in the Flask application.
+Failed to significantly improve distribution.
 </p>
 
-<hr>
-
-<!-- ================= WORKFLOW ================= -->
-
-<h2>🔁 Project Workflow</h2>
-<ol>
-  <li>Data loading and cleaning</li>
-  <li>Missing value imputation</li>
-  <li>Outlier treatment and variable transformation</li>
-  <li>Feature selection</li>
-  <li>Categorical encoding</li>
-  <li>Class imbalance handling using SMOTE</li>
-  <li>Model training and evaluation</li>
-  <li>AUC–ROC comparison</li>
-  <li>Best model selection</li>
-  <li>Flask-based deployment</li>
-</ol>
-
-<hr>
-
-<!-- ================= FILE STRUCTURE ================= -->
-
-<h2>📁 File Descriptions</h2>
-
-<h3>main.py</h3>
+<h4>Box-Cox Transformation</h4>
 <p>
-Acts as the core pipeline controller. Loads data, performs preprocessing,
-feature engineering, encoding, class balancing, and triggers model training.
+Restricted to positive values and did not yield sufficient improvement.
 </p>
 
-<h3>random_sample_imputation.py</h3>
+<h4>Yeo–Johnson Transformation (Best)</h4>
 <p>
-Handles missing values using random sample imputation to preserve data distribution.
+Handled both positive and negative values and improved feature normality, making it the
+preferred transformation.
 </p>
 
-<h3>var_trnsf_outlrs.py</h3>
+<h3>Handling Outliers</h3>
+
+<h4>Capping</h4>
 <p>
-Applies Yeo-Johnson transformation and IQR-based trimming for outlier handling.
+Simple but not data-driven; risk of information loss.
 </p>
 
-<h3>feature_selection.py</h3>
+<h4>Trimming</h4>
 <p>
-Removes constant and quasi-constant features and applies correlation-based selection.
+Removes extreme values but leads to data loss; not selected.
 </p>
 
-<h3>imbalance_data.py</h3>
+<h4>5th–95th Quantile Method</h4>
 <p>
-Uses SMOTE for class balancing and applies feature scaling. Saves the scaler.
+Caps extreme values while preserving data; used in preprocessing.
 </p>
 
-<h3>all_models.py</h3>
-<p>
-Trains and evaluates multiple ML models, generates ROC curves, logs metrics,
-and saves the best-performing model.
-</p>
+<hr/>
 
-<h3>app.py</h3>
-<p>
-Flask web application for real-time customer churn prediction.
-</p>
+<h2>🎯 Feature Selection</h2>
 
-<h3>log_code.py</h3>
-<p>
-Centralized logging utility used across all modules for debugging and monitoring.
-</p>
-
-<hr>
-
-<h2>🎯 Key Results</h2>
+<h3>Categorical Encoding</h3>
 <ul>
-  <li>High churn observed in early tenure and month-to-month contracts</li>
-  <li>Bundled services and long-term contracts improve retention</li>
-  <li>Naive Bayes achieved the best AUC performance</li>
-  <li>End-to-end pipeline supports real-time churn prediction</li>
+  <li>One-Hot Encoding – Nominal variables</li>
+  <li>Ordinal Encoding – Contract type</li>
+  <li>Label Encoding – Target variable</li>
 </ul>
 
-<hr>
+<h3>Filter Methods</h3>
+
+<h4>Constant & Quasi-Constant Features</h4>
+<p>
+Variance thresholding was applied; no features were removed.
+</p>
+
+<h3>Hypothesis Testing</h3>
+
+<h4>ANOVA Test</h4>
+<p>
+Used for numerical vs categorical feature relationships.
+</p>
+
+<h4>Chi-Square Test (Best)</h4>
+<p>
+Used to select statistically significant categorical features.
+</p>
+
+<h4>Correlation Analysis</h4>
+<p>
+Used to detect multicollinearity among numerical features.
+</p>
+
+<hr/>
+
+<h2>⚖️ Data Balancing</h2>
+<p>
+SMOTE (Synthetic Minority Over-sampling Technique) was applied to handle class imbalance
+by generating synthetic minority class samples.
+</p>
+
+<hr/>
+
+<h2>📏 Feature Scaling</h2>
+<p>
+Standard Scaling (Z-score normalization) was applied to numerical features to ensure
+uniform scale across inputs.
+</p>
+
+<hr/>
+
+<h2>🤖 Model Training & Evaluation</h2>
+<p>
+Multiple classification models were trained. Performance was evaluated using ROC and AUC
+metrics to ensure threshold-independent comparison.
+</p>
+
+<h3>ROC & AUC</h3>
+<p>
+ROC curves visualize sensitivity vs specificity trade-offs. AUC represents the model’s
+overall discriminative power.
+</p>
+
+<hr/>
+
+<h2>🏆 Best Model</h2>
+<p>
+The Naive Bayes classifier achieved the highest ROC–AUC score (~0.836) and demonstrated
+stable performance. The trained model was serialized using Pickle for deployment.
+</p>
+
+<hr/>
+
+<h2>🌐 Frontend & Backend</h2>
+<p>
+A Flask-based web application was developed. Users input customer details via an HTML
+form, and real-time churn prediction with probability is displayed on the same page.
+</p>
+
+<hr/>
+
+<h2>📈 Results</h2>
+<p>
+The deployed system successfully predicts customer churn and supports proactive
+retention decision-making.
+</p>
+
+<hr/>
+
+<h2>📌 Conclusion</h2>
+<p>
+This project demonstrates how machine learning can be effectively applied to customer
+retention problems. By combining robust preprocessing, statistical analysis, and
+deployment, the system delivers actionable churn predictions.
+</p>
+
+<hr/>
 
 <h2>🚀 Future Enhancements</h2>
 <ul>
-  <li>Hyperparameter tuning</li>
-  <li>Automated ML pipelines</li>
-  <li>Cloud deployment</li>
-  <li>Real-time dashboards</li>
-  <li>Model monitoring and retraining</li>
+  <li>Deep Learning models (ANN, CNN, LSTM)</li>
+  <li>Real-time streaming data pipelines</li>
+  <li>Interactive analytics dashboard</li>
+  <li>Scalable cloud deployment</li>
 </ul>
 
-<hr>
-</body>
-</html>
+<hr/>
+
+<h2>🧑‍💻 Author</h2>
+<p>
+<b>M. Chandra Kanth</b><br/>
+Data Science Intern<br/>
+The Skill Union | Vihara Tech | 
+Contact Mail : mck42945@gmail.com
+</p>
+
+<hr/>
+
+<h2>📚 References</h2>
+<ul>
+  <li>Kaggle – Telco Customer Churn Dataset</li>
+  <li>Scikit-learn Documentation</li>
+  <li>Pandas & NumPy Documentation</li>
+  <li>Flask Official Documentation</li>
+</ul>
